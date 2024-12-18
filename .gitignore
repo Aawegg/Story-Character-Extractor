@@ -1,0 +1,18 @@
+# Ignore virtual environment
+venv/
+
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore environment variable files
+.env
+
+# Ignore embeddings and vector database files
+story_embeddings/
+*.sqlite3
+*.bin
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
