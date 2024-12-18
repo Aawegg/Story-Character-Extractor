@@ -132,14 +132,3 @@ def get_character_info(character_name: str) -> CharacterInfo:
     except Exception as e:
         print(f"An error occurred while retrieving character information: {e}", file=sys.stderr)
         raise
-
-
-# Optional: Example usage for testing purposes
-if __name__ == "__main__":
-    try:
-        character_info = get_character_info("John")
-        
-        # Use model_dump_json() instead of json() for Pydantic v2 compatibility
-        print(character_info.model_dump_json(indent=4))
-    except Exception as e:
-        print(f"Error retrieving character info: {e}", file=sys.stderr)
