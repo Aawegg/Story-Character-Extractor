@@ -105,13 +105,13 @@ python main.py compute-embeddings-cli --dataset-path <path_to_story_directory>
 
 ## Environment Variables
 
-Set your **MistralAI API key** as an environment variable:
+Set your **MistralAI API key** using a `.env` file for secure and easy management of sensitive data.
 
-```bash
-export MISTRAL_API_KEY="your-mistral-api-key"
-```
+ **Create a `.env` file** in the root directory of the project and add the following line:
 
-Alternatively, modify utils.py to include your API key directly (not recommended for production).
+   ```env
+   MISTRAL_API_KEY=your-mistral-api-key
+   ```
 
 ---
 
