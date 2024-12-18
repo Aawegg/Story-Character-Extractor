@@ -13,7 +13,7 @@ The **Story Character Extractor** is a Python-based project designed to compute 
 
 ## Project Structure
 
-text
+```text
 .
 ├── embeddings.py         # Script for computing embeddings from story datasets
 ├── extraction.py         # Script for extracting character information
@@ -21,6 +21,7 @@ text
 ├── main.py               # CLI interface to interact with the project
 ├── utils.py              # Utility functions (e.g., API key management)
 ├── requirements.txt      # Python dependencies
+```
 
 ## Requirements
 
@@ -33,26 +34,31 @@ Ensure you have the following installed:
 ## Installation Steps
 
 ### 1. Clone the repository:
-bash
+```bash
 git clone https://github.com/Aawegg/Story-Character-Extractor.git
 cd Story-Character-Extractor
+```
 
 ### 2. Create a virtual environment:
-bash
+```bash
 python -m venv venv
+```
 
 ### 3. Activate the virtual environment:
 On Windows:
-bash
+```bash
 venv\Scripts\activate
+```
 
 On macOS/Linux:
-bash
+```bash
 source venv/bin/activate
+```
 
 ### 4. Install dependencies:
-bash
+```bash
 pip install -r requirements.txt
+```
 
 ---
 
@@ -61,8 +67,9 @@ pip install -r requirements.txt
 ### 1. Compute Embeddings
 Generate embeddings for a directory of story text files and store them in a vector database:
 
-bash
+```bash
 python main.py compute-embeddings-cli --dataset-path <path_to_story_directory>
+```
 
 ---
 
@@ -100,8 +107,9 @@ python main.py compute-embeddings-cli --dataset-path <path_to_story_directory>
 
 Set your **MistralAI API key** as an environment variable:
 
-bash
+```bash
 export MISTRAL_API_KEY="your-mistral-api-key"
+```
 
 Alternatively, modify utils.py to include your API key directly (not recommended for production).
 
