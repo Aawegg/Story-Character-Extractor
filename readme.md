@@ -56,6 +56,7 @@ Generate embeddings for all .txt files in a directory and store them in a vector
 python main.py compute-embeddings-cli <dataset_path>
 ```
 * Example:
+  * Example:
 ```bash
 python main.py compute-embeddings-cli ./stories
 ```
@@ -68,6 +69,7 @@ python main.py get-character-info-cli <character_name>
 ```
 
 * Example:
+  * Example:
 ```bash
 python main.py get-character-info-cli Alice
 ```
