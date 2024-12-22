@@ -1,128 +1,133 @@
-# Story Character Extractor
-
-The **Story Character Extractor** is a Python-based project designed to compute embeddings for story datasets and extract detailed character information using machine learning models. It uses **LangChain**, **MistralAI embeddings**, and **vector databases** for efficient text processing and querying.
-
----
-
-## Features
-
-- **Compute Embeddings**: Generate embeddings for story datasets and store them in a vector database.
-- **Character Information Extraction**: Retrieve structured information about characters from stories, including their roles, relationships, and summaries.
+#Character Information Extraction System
+This project is a text document processing pipeline designed to extract detailed character information from stories. Using embeddings, vector databases, and a large language model (LLM), the system provides structured information about characters, including their relationships, roles, and summaries.
 
 ---
 
-## Project Structure
-
-```text
-.
-├── embeddings.py         # Script for computing embeddings from story datasets
-├── extraction.py         # Script for extracting character information
-├── document_processing.py # Utility for loading story documents
-├── main.py               # CLI interface to interact with the project
-├── utils.py              # Utility functions (e.g., API key management)
-├── requirements.txt      # Python dependencies
-```
-
-## Requirements
-
-Ensure you have the following installed:
-
-- Python 3.8 or higher
+##Features
+* **Document Processing**: Loads and preprocesses .txt files from a specified directory.
+* **Embedding Computation**: Generates vector embeddings for text chunks using MistralAI.
+* **Character Information Extraction**: Retrieves structured details about characters using vector similarity search and LLM prompts.
+* **Command-Line Interface (CLI)**: Provides an easy-to-use interface for embedding computation and character queries.
+##Technologies Used
+* Python
+* LangChain Framework
+* MistralAI
+* Chroma Vector Database
+* Typer (CLI Framework)
+* Pydantic (Data Validation)
 
 ---
 
-## Installation Steps
+##Installation
+###Clone the Repository
 
-### 1. Clone the repository:
 ```bash
-git clone https://github.com/Aawegg/Story-Character-Extractor.git
-cd Story-Character-Extractor
+git clone https://github.com/your-username/character-info-extraction.git
+cd character-info-extraction
 ```
+###Set Up a Virtual Environment
 
-### 2. Create a virtual environment:
 ```bash
 python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
-### 3. Activate the virtual environment:
-On Windows:
-```bash
-venv\Scripts\activate
-```
+###Install Dependencies
 
-On macOS/Linux:
-```bash
-source venv/bin/activate
-```
-
-### 4. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
----
+###Set Up Environment Variables
+Create a .env file or set the following environment variables:
 
-## Usage
-
-### 1. Compute Embeddings
-Generate embeddings for a directory of story text files and store them in a vector database:
-
-```bash
-python main.py compute-embeddings-cli --dataset-path <path_to_story_directory>
+```makefile
+MISTRAL_API_KEY=your-mistral-api-key
 ```
 
 ---
 
-## File Details
+##Usage
+1. Compute Embeddings
+Generate embeddings for all .txt files in a directory and store them in a vector database.
 
-### embeddings.py
-- Loads story documents from a specified directory.
-- Splits text into manageable chunks.
-- Computes embeddings using the **MistralAI model**.
-- Stores embeddings in a **Chroma vector database**.
+```bash
+python main.py compute-embeddings-cli <dataset_path>
+```
+* Example:
+```bash
+python main.py compute-embeddings-cli ./stories
+```
 
-### extraction.py
-- Queries the vector database for relevant story excerpts.
-- Uses a language model to generate structured JSON data about characters, including:
-  - **Name**
-  - **Story title**
-  - **Summary**
-  - **Relationships with other characters**
-  - **Narrative role** (e.g., protagonist, antagonist)
+2. Retrieve Character Information
+Query the system for details about a specific character.
 
-### document_processing.py
-- Provides utility functions to load .txt files from a directory into **LangChain-compatible document objects**.
+```bash
+python main.py get-character-info-cli <character_name>
+```
 
-### main.py
-- Command-line interface (CLI) to interact with the project functionalities:
-  - Compute embeddings.
-  - Retrieve character information.
-
-### utils.py
-- Contains helper functions such as API key retrieval.
+* Example:
+```bash
+python main.py get-character-info-cli Alice
+```
 
 ---
 
-## Environment Variables
-
-Set your **MistralAI API key** using a `.env` file for secure and easy management of sensitive data.
-
- **Create a `.env` file** in the root directory of the project and add the following line:
-
-   ```env
-   MISTRAL_API_KEY=your-mistral-api-key
-   ```
-
+##Project Structure
+```bash
+character-info-extraction/
+├── document_processing.py   # Handles loading and preprocessing text files.
+├── embeddings.py            # Computes and stores embeddings in a vector database.
+├── extraction.py            # Extracts structured character information using LLMs.
+├── main.py                  # CLI for embedding computation and character queries.
+├── requirements.txt         # List of dependencies.
+└── README.md                # Project documentation.
+```
 ---
 
-## Error Handling
+##Example Workflow
+1. Prepare a Dataset:
+  Place .txt files in a directory, e.g., ./stories.
 
-- **No Documents Found**: Ensure your dataset directory contains .txt files.
-- **Invalid API Key**: Verify that your **MistralAI API key** is correctly set in the environment or in utils.py.
-- **JSON Parsing Errors**: Check the output format of the language model if issues arise during character info extraction.
+2. Compute Embeddings:
+  Run the compute-embeddings-cli command to generate embeddings.
 
+3. Query Character Information:
+  Use the get-character-info-cli command to retrieve details about characters.
+
+##Sample Output
+###Input Command:
+```bash
+python main.py get-character-info-cli Alice
+```
+###Output (JSON):
+```json
+{
+    "name": "Alice",
+    "storyTitle": "Adventures in Wonderland",
+    "summary": "A curious and adventurous girl who explores a magical world.",
+    "relations": {
+        "White Rabbit": {
+            "relationType": "Friend",
+            "summary": "A guide and companion during her journey."
+        },
+        "Queen of Hearts": {
+            "relationType": "Antagonist",
+            "summary": "The ruler of Wonderland who opposes Alice."
+        }
+    },
+    "characterType": "Protagonist"
+}
+```
 ---
 
-## Contributing
+##Contributing
+Contributions are welcome! If you have suggestions for improvements or new features, feel free to open an issue or submit a pull request.
 
-Contributions are welcome! Please fork the repository and submit a pull request with your changes.
+##License
+This project is licensed under the MIT License.
+
+##Contact
+For any inquiries or support, contact Aaweg Bhaladhare at your-email@example.com.
+
+_Feel free to replace placeholders like your-username, your-mistral-api-key, and your-email@example.com with the actual details for your project._
