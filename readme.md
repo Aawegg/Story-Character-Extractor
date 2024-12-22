@@ -1,4 +1,4 @@
-# Character Information Extraction System
+# Story-Character-Extractor
 This project is a text document processing pipeline designed to extract detailed character information from stories. Using embeddings, vector databases, and a large language model (LLM), the system provides structured information about characters, including their relationships, roles, and summaries.
 
 ---
@@ -22,8 +22,9 @@ This project is a text document processing pipeline designed to extract detailed
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/character-info-extraction.git
-cd character-info-extraction
+git clone https://github.com/Aawegg/Story-Character-Extractor.git
+cd Story-Character-Extractor
+
 ```
 ### Set Up a Virtual Environment
 
@@ -75,7 +76,7 @@ python main.py get-character-info-cli Alice
 
 ## Project Structure
 ```bash
-character-info-extraction/
+Story-Character-Extractor/
 ├── document_processing.py   # Handles loading and preprocessing text files.
 ├── embeddings.py            # Computes and stores embeddings in a vector database.
 ├── extraction.py            # Extracts structured character information using LLMs.
@@ -98,7 +99,7 @@ character-info-extraction/
 ## Sample Output
 ### Input Command:
 ```bash
-python main.py get-character-info-cli Alice
+python main.py get-character-info-cli "Alice"
 ```
 ### Output (JSON):
 ```json
@@ -128,6 +129,5 @@ Contributions are welcome! If you have suggestions for improvements or new featu
 This project is licensed under the MIT License.
 
 ## Contact
-For any inquiries or support, contact Aaweg Bhaladhare at your-email@example.com.
+For any inquiries or support, contact Aaweg Bhaladhare at aaweg.22110711@viit.ac.in.
 
-_Feel free to replace placeholders like your-username, your-mistral-api-key, and your-email@example.com with the actual details for your project._
