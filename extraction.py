@@ -2,7 +2,7 @@ from langchain_chroma import Chroma
 from langchain_mistralai import ChatMistralAI, MistralAIEmbeddings
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import AIMessage
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ValidationError
 from typing import Dict, Union
 import json
 import sys
@@ -25,7 +25,7 @@ class CharacterInfo(BaseModel):
     characterType: str = Field(..., description="Role in the story")
 
     class Config:
-        extra = 'ignore'  # Ignore extra fields not defined in the model
+        extra = 'ignore'
         populate_by_name = True
 
 
@@ -85,13 +85,13 @@ def get_character_info(character_name: str) -> CharacterInfo:
         - storyTitle: Title of the story/work
         - summary: Concise 2-3 sentence character description 
         - relations: Dictionary of key relationships with details
-          * Keys are other character names
+          * Keys are unique character names
           * Values are objects with:
             - relationType: Describes the nature of the relationship
             - summary: Brief description of the relationship
         - characterType: Archetypal or narrative role (e.g., protagonist, antagonist, mentor)
 
-        Important: Ensure the JSON is valid and matches the specified structure.
+        Important: Ensure the JSON is valid, matches the specified structure, and contains no duplicate keys.
         Provide a professional, detailed, and accurate response.
         """)
         
@@ -127,8 +127,12 @@ def get_character_info(character_name: str) -> CharacterInfo:
                 else:
                     raise ValueError(f"No valid JSON found in the response: {content}")
         
+        # Validate and return the structured character info
         return parse_character_info(content)
 
+    except ValidationError as ve:
+        print(f"Validation error: {ve}", file=sys.stderr)
+        raise
     except Exception as e:
         print(f"An error occurred while retrieving character information: {e}", file=sys.stderr)
         raise
